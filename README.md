@@ -1,2 +1,2 @@
 # embuild-website
-The website for embuild
+The website for [embuild](https://pypi.org/project/embuild/)

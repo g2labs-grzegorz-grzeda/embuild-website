@@ -1,0 +1,25 @@
+.hugo_build.lock
+
+# Hugo output directory
+/public/
+
+# Hugo cache directory
+/resources/_gen/
+
+# Hugo temporary files
+/resources/_gen/*
+
+# Hugo server public directory
+/resources/public/
+
+# Hugo generated files
+/resources/_gen/*
+
+# Hugo logs
+/resources/logs/
+
+# Hugo environment file
+/resources/.env
+
+# Hugo backup files
+*.bak

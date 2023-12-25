@@ -1,0 +1,8 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'embuild'
+description = 'EMBuild is a tool for building and C/CMake software projects.'
+
+[Params]
+author = 'Grzegorz Grzęda'
+license = "MIT"
