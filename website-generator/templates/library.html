@@ -13,13 +13,6 @@
 </p>
 <hr />
 
-<script>
-    function copyCommand() {
-        var copyText = document.getElementById("commandToCopy").innerText;
-        navigator.clipboard.writeText(copyText);
-    }
-</script>
-
 <p>
     Add to project with <span class="w3-tag w3-teal"><code
             id="commandToCopy">python -m embuild add {{name}}</code></span> <button onclick="copyCommand()"><i
@@ -41,4 +34,5 @@
     {{readme}}
 </div>
 {%endif%}
+<p></p>
 {%endblock%}
