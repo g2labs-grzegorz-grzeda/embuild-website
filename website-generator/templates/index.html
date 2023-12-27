@@ -1,10 +1,21 @@
 {%extends "base.html"%}
+
 {%block content%}
-<div class="w3-container" , style="max-width: 800px; margin:auto">
-    <h2>Libraries</h2>
-    {%for library in libraries%}
-    <h3><a href="/{{library}}">{{library}}</a></h3>
-    <hr />
-    {%endfor%}
-</div>
+
+<p>
+    Bootstrap your C CMake project with <span class="w3-tag w3-teal"><code>embuild</code></span>!
+</p>
+
+<p>
+    Don't have <span class="w3-tag w3-teal"><code>embuild</code></span> yet? .
+</p>
+
+<p>Install it with <span class="w3-tag w3-teal"><code>pip install embuild</code></span></p>
+
+<hr />
+<h2>Libraries</h2>
+{%for library in libraries%}
+<h3><a href="/{{library}}">{{library}}</a></h3>
+<hr />
+{%endfor%}
 {%endblock%}

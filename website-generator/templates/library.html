@@ -1,0 +1,44 @@
+{%extends "base.html"%}
+
+{%block content%}
+
+<h1>{{name}}</h1>
+
+{% if description %}
+<p>{{description}}</p>
+{% endif %}
+
+<p>
+    Repository <span class="w3-tag w3-teal"><code>{{repository}}</code></span>
+</p>
+<hr />
+
+<script>
+    function copyCommand() {
+        var copyText = document.getElementById("commandToCopy").innerText;
+        navigator.clipboard.writeText(copyText);
+    }
+</script>
+
+<p>
+    Add to project with <span class="w3-tag w3-teal"><code
+            id="commandToCopy">python -m embuild add {{name}}</code></span> <button onclick="copyCommand()"><i
+            class="fa fa-copy"></i></button>
+</p>
+<hr />
+
+{% if libraries%}
+<h4>Libraries</h4>
+{%for library in libraries%}
+<a href="/{{library}}">{{library}}</a>
+{%endfor%}
+<hr />
+{%endif%}
+
+{% if readme%}
+<h4>Readme</h4>
+<div class="w3-container w3-sand">
+    {{readme}}
+</div>
+{%endif%}
+{%endblock%}

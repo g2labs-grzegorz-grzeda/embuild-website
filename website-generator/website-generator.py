@@ -4,6 +4,7 @@ from shutil import rmtree
 from argparse import ArgumentParser
 from vt100logging import vt100logging_init, D, I, W, E
 from json import load as json_load
+from markdown import markdown
 
 TEMPLATES_DIR = 'templates'
 INDEX_TEMPLATE = 'index.html'
@@ -12,8 +13,7 @@ LIBRARY_TEMPLATE = 'library.html'
 TITLE = "embuild"
 AUTHOR = "G2Labs Grzegorz Grzęda"
 LICENSE = "MIT"
-DESCRIPTION = "embuild is a build system for embedded software"
-
+DESCRIPTION = "embuild is a tool for C/CMake static library management"
 
 VERBOSE = False
 
@@ -68,13 +68,29 @@ def load_libraries_info(libraries_info_file: str) -> dict:
 def create_website(environment: Environment, libraries_info: dict, destination_dir: str):
     rmtree(destination_dir, ignore_errors=True)
     makedirs(destination_dir, exist_ok=True)
+    environment.globals['title'] = TITLE
+    environment.globals['author'] = AUTHOR
+    environment.globals['license'] = LICENSE
+    environment.globals['main_description'] = DESCRIPTION
     with open(path.join(destination_dir, 'index.html'), 'w') as f:
         f.write(get_index_template(environment).render({
-            'title': TITLE,
-            'author': AUTHOR,
-            'license': LICENSE,
             'libraries': libraries_info.keys(),
         }))
+
+    for name, content in libraries_info.items():
+        readme = content['readme']
+        libraries = content['project']['libraries'] if 'libraries' in content['project'] else [
+        ]
+        description = content['project']['description'] if 'description' in content['project'] else ''
+        makedirs(path.join(destination_dir, name), exist_ok=True)
+        with open(path.join(destination_dir, name,  'index.html'), 'w') as f:
+            f.write(get_library_template(environment).render({
+                'name': name,
+                'repository': content['repository'],
+                'description': description,
+                'readme': markdown(readme),
+                'libraries': libraries,
+            }))
 
 
 def main():
