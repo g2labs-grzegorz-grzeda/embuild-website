@@ -33,11 +33,14 @@ jobs:
         pip install vt100logging jinja2 markdown
     - name: Parse libraries
       run: |
-        python library-parser/library-parser.py libraries.json -v
+        python library-parser/library-parser.py libraries.json
     - name: Generate website
       run: |
-        python website-generator/website-generator.py libraries.json public -v
-    - uses: actions/upload-artifact@v4
+        python website-generator/website-generator.py libraries.json build
+    - uses: jsmrcaga/action-netlify-deploy@v2.0.0
       with:
-        name: embuild-website
-        path: public/
+        NETLIFY_AUTH_TOKEN: ${{ secrets.MY_NETLIFY_TOKEN_SECRET }}
+        NETLIFY_SITE_ID: ${{ secrets.MY_NETLIFY_SITE_ID }}
+        NETLIFY_DEPLOY_TO_PROD: true
+        install_command: "echo Nothing to install here"
+        build_command: "echo Nothing to build here"
