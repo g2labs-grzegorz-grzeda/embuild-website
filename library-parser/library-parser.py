@@ -50,19 +50,16 @@ def get_libraries_info(libraries: dict) -> dict:
 
     for library_name, library_repository in libraries.items():
         I(f'Processing {library_name}')
-        library_info = {}
+        library_info = {'repository': library_repository, 'project': {},
+                        'readme': ''}
         with TemporaryDirectory() as tempdir:
             run_process(f'git clone {library_repository} {tempdir}')
             if path.exists(path.join(tempdir, 'project.json')):
                 with open(path.join(tempdir, 'project.json')) as f:
                     library_info['project'] = json_load(f)
-            else:
-                library_info['project'] = {}
             if path.exists(path.join(tempdir, 'README.md')):
                 with open(path.join(tempdir, 'README.md')) as f:
                     library_info['readme'] = f.read()
-            else:
-                library_info['readme'] = ''
         libraries_info[library_name] = library_info
 
     return libraries_info
