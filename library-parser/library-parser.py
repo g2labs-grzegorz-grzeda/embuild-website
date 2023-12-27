@@ -7,7 +7,7 @@ from json import load as json_load, dump as json_dump
 from tempfile import TemporaryDirectory
 
 VERBOSE = False
-EMBUILD_REPOSITORY = 'git@github.com:g2labs-grzegorz-grzeda/embuild-repository.git'
+EMBUILD_REPOSITORY = 'https://github.com/g2labs-grzegorz-grzeda/embuild-repository.git'
 
 
 def set_verbose(verbose):
