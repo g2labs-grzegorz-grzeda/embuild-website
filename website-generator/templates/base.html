@@ -10,7 +10,13 @@
 </head>
 
 <body>
+    <header class="w3-container w3-teal">
+        <h5>{{title}}</h5>
+    </header>
     {% block content %}{% endblock %}
+    <footer class="w3-container w3-teal">
+        <p>&copy; {{author}} under {{license}} license</p>
+    </footer>
     {% block javascripts %}{% endblock %}
 </body>
 
