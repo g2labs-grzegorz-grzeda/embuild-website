@@ -14,6 +14,7 @@ TITLE = "embuild"
 AUTHOR = "G2Labs Grzegorz Grzęda"
 LICENSE = "MIT"
 DESCRIPTION = "embuild is a tool for C/CMake static library management"
+GOOGLE_TAG = 'G-9EFJ6KQXGD'
 
 VERBOSE = False
 
@@ -72,6 +73,7 @@ def create_website(environment: Environment, libraries_info: dict, destination_d
     environment.globals['author'] = AUTHOR
     environment.globals['license'] = LICENSE
     environment.globals['main_description'] = DESCRIPTION
+    environment.globals['google_tag'] = GOOGLE_TAG
     with open(path.join(destination_dir, 'index.html'), 'w') as f:
         f.write(get_index_template(environment).render({
             'libraries': libraries_info.keys(),
